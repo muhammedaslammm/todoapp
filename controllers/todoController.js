@@ -3,6 +3,7 @@ let Project = require('./../models/projects');
 
 exports.addTodo = async function(req,res){
     try{
+        let userID = req.session.userID;
         let {projectid, description} = req.body;
         console.log('projectid:',projectid,'| description:',description);
 
@@ -41,7 +42,7 @@ exports.addTodo = async function(req,res){
 exports.updateTodo = async function(req,res){
     try{
         let {id,projectid} = req.params;
-        console.log(req.params);
+        let userID = req.session.userID;
         
         req.body.updatedDate = new Date();
         console.log('updated_date:',req.body.updatedDate); 
@@ -77,6 +78,7 @@ exports.updateTodo = async function(req,res){
 exports.deleteTodo = async function(req,res){
     try{
         let {id,projectid} = req.params;
+        let userID = req.session.userID;
         await Todo.findByIdAndDelete(id);
         await Project.updateOne({userID,_id:projectid},{$pull:{list_of_todos:id}});
 

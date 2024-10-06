@@ -5,7 +5,8 @@ require('dotenv').config()
 exports.generateSummaryGist = async function(req,res){
     try{
         let projectid = req.params.id;
-        let project = await Project.findById(projectid).populate('list_of_todos');
+        let userID = req.session.userID;
+        let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         let title = project.title;
         let date = project.created_date.toISOString().split('T')[0];
 

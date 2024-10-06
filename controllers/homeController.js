@@ -2,7 +2,8 @@ let Project = require('./../models/projects');
 
 // params middleware for id
 exports.checkID = async function(req,res,next,val){
-    let project = await Project.findById(val);
+    let userID = req.session.userID;
+    let project = await Project.findOne({userID,_id:val});
     if(!project){
         return res.status(404).json({
             status:'fail',
@@ -16,6 +17,7 @@ exports.checkID = async function(req,res,next,val){
 // get all project
 exports.getAllProjects = async function(req,res){
     try{
+        let userID = req.session.userID;
         let projects = await Project.find({userID});
         res.status(200).render("home",{projects,title:'home'}) 
     }
@@ -36,7 +38,8 @@ exports.getProject = async function(req,res){
         let projectid = req.params.id;
         let completed = 0;
         let checked_todos;
-        let unchecked_todos;        
+        let unchecked_todos;   
+        let userID = req.session.userID;     
         let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         let project_date = project.created_date.toISOString().split('T')[0]
         let todos = project.list_of_todos;
