@@ -16,7 +16,7 @@ exports.checkID = async function(req,res,next,val){
 // get all project
 exports.getAllProjects = async function(req,res){
     try{
-        let projects = await Project.find();
+        let projects = await Project.find({userID});
         res.status(200).render("home",{projects,title:'home'}) 
     }
     catch(error){
@@ -37,7 +37,7 @@ exports.getProject = async function(req,res){
         let completed = 0;
         let checked_todos;
         let unchecked_todos;        
-        let project = await Project.findById(projectid).populate('list_of_todos');
+        let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         let project_date = project.created_date.toISOString().split('T')[0]
         let todos = project.list_of_todos;
         
@@ -80,9 +80,9 @@ exports.getProject = async function(req,res){
 // creating project
 exports.createProject = async function(req,res){
     try{
-        console.log(req.body);
-        
+        let userID = req.session.userID;
         await Project.create({
+            userID,
             title:req.body.title, 
             created_date:new Date()
         })
@@ -104,7 +104,8 @@ exports.createProject = async function(req,res){
 exports.editProject = async function(req,res){
     try{
         let projectid = req.params.id;
-        await Project.findByIdAndUpdate(projectid,req.body)
+        let userID = req.session.userID;
+        await Project.updateOne({userID,_id:projectid},{$set:req.body})
         res.status(200).json({
             status:'success',
             message:'project updated'
@@ -121,8 +122,9 @@ exports.editProject = async function(req,res){
 // delete a project
 exports.deleteProject = async function(req,res){
     try{
+        let userID = req.session.userID;
         let projectid = req.params.id;
-        await Project.findByIdAndDelete(projectid);
+        await Project.deleteOne({userID,_id:projectid});
         res.status(200).json({
             status:'success',
             message:'project deleted'            

@@ -1,6 +1,9 @@
 let mongoose = require('mongoose');
 
 let Schema = new mongoose.Schema({
+    userID:{
+        type:mongoose.Schema.Types.ObjectId
+    },
     title:{
         type:String,
         unique:true

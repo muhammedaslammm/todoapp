@@ -10,8 +10,8 @@ exports.addTodo = async function(req,res){
             description,
             created_date:new Date(),            
         })
-        await Project.findByIdAndUpdate(projectid,{$push:{list_of_todos:newTodo._id}},{new:true});
-        let project = await Project.findById(projectid).populate('list_of_todos');
+        await Project.updateOne({userID,_id:projectid},{$push:{list_of_todos:newTodo._id}},{new:true});
+        let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         let todos = project.list_of_todos;
         let completed = todos.filter(todo => todo.status).length;
 
@@ -49,7 +49,7 @@ exports.updateTodo = async function(req,res){
          
             
         let updatedTodo = await Todo.findByIdAndUpdate(id,req.body,{new:true});
-        let project = await Project.findById(projectid).populate('list_of_todos');
+        let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         let todos = project.list_of_todos;
         let completed = todos.filter(todo => todo.status).length
               
@@ -78,11 +78,11 @@ exports.deleteTodo = async function(req,res){
     try{
         let {id,projectid} = req.params;
         await Todo.findByIdAndDelete(id);
-        await Project.updateOne({_id:projectid},{$pull:{list_of_todos:id}});
+        await Project.updateOne({userID,_id:projectid},{$pull:{list_of_todos:id}});
 
         console.log('projectid:',projectid);
         
-        let project = await Project.findById(projectid).populate('list_of_todos');
+        let project = await Project.findOne({userID,_id:projectid}).populate('list_of_todos');
         console.log('project:',project);
         
         let todos = project.list_of_todos;
