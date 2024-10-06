@@ -1,0 +1,152 @@
+@use 'partials/global';
+@use 'partials/mixins';
+@use 'partials/variables';
+
+.project{
+    @include mixins.container-style;
+    padding:1.2rem 2.2rem;    
+}
+
+.project__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .project__name{
+        font-size: 2rem;
+        font-weight: 500;
+        color:rgb(42, 42, 42);   
+        &:focus{
+            outline: none;
+        }     
+    }
+    .project__date{
+        color: rgb(117, 117, 117);
+        font-size: 1rem;
+        margin-top: -.2rem;
+    }
+
+    .header__right{
+        display: flex;
+        gap:.5rem;
+        a{
+            @include mixins.button;
+        }
+        .button--gist{
+            border:1px solid rgb(60, 60, 187);
+            color: rgb(60, 60, 187);
+            &:active{
+                background-color:rgb(60, 60, 187);
+                color:white
+            }
+        }
+        .button--add{
+            background-color: rgb(60, 60, 187);
+            color: white
+        }
+    } 
+}
+.todos{
+    @include mixins.greyPlate;
+}
+.todos__count{
+    text-align: end;
+    font-size: 1rem;
+    color: rgb(191, 191, 191);;
+}
+.todos__empty{
+    font-size: 1.2rem;
+}
+.pending__section{
+    margin-bottom: 1.8rem;
+    .pending__section__head{
+        @include mixins.section-head(1.2rem)
+    }
+}
+
+.completed__section{
+    margin-bottom: 1rem;    
+    .completed__section__head{
+        @include mixins.section-head(1.1rem)
+    }
+}
+
+.todo__pending{
+    margin-bottom: .4rem;
+    .pending__head{
+        font-size: 1.2rem;        
+        color: rgb(46, 46, 46);
+        margin-left: .5rem;        
+    }
+    .head{
+        user-select: none;
+        outline: none;
+    }
+}
+
+.todo__completed{
+    margin-bottom: .4rem;
+    
+    .completed__head{
+        font-size: 1.3rem;        
+        color: rgb(47, 47, 47);
+        margin-left: .5rem;
+    }
+    .head{
+        user-select: none;
+        outline: none;
+    }
+}
+
+.todo__pending__empty{
+    color:rgb(150, 150, 150);
+    font-style: italic;
+    font-size:1.2rem;
+    margin-top: .4rem;
+}
+.todo__completed__empty{
+    color:rgb(150, 150, 150);
+    font-style: italic;
+    font-size:1.2rem;
+    margin-top: .4rem;
+}
+.todo__instruction{
+    display: none;
+    text-align: end;
+    font-size: .8rem;
+    font-style: italic;
+    color: rgb(191, 191, 191);
+    margin-top: .4rem;
+}
+.dialog{
+    @include mixins.dialog;
+    .dialog__form{
+        @include mixins.dialog-form;
+    }
+    .form__label{
+        font-size: 1.1rem;
+    }
+    .todo__input{
+        @include mixins.dialog_input;
+    }
+    .input-error{
+        margin-top: .2rem;
+        font-size: .9rem;
+        color: variables.$red;
+    }
+    .form__button{
+        text-align: end;
+        a{
+            font-size: .9rem;
+            text-decoration: none;
+        }
+        .button--close{
+            @include mixins.buttons__cancel;
+
+        }
+        .button--submit{
+            @include mixins.buttons__submit;
+        }
+    }
+}

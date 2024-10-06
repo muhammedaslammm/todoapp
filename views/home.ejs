@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/config')%>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">#TO<span>DO</span></div>
+            <a href="#" class="button--add">Add Project</a>
+        </header>
+        <main class="projects">
+            <%if(projects.length === 0){%>
+                <p class="project__empty">No projects added. <a href="#" class="button--add">add new project</a></p>
+            <%}else{%>
+                <%projects.forEach(function(project){%>
+                    <div class="project" data-id="<%=project._id%>">
+                        <div class="project__left">
+                            <div class="project__left-title"><%=project.title%></div>
+                            <div class="project__left__date">Created on <%=project.created_date.toISOString().split('T')[0]%></div>
+                        </div>
+                        <div class="project__right">                            
+                            <ul class="project__buttons">
+                                <li><a href="/todo-app" class="button--remove" >Delete Project</a></li>
+                            </ul>
+                        </div>  
+                    </div>
+                <%})%>                
+            <%}%>
+            <dialog class="dialog">
+                <form action="#" class="dialog__form">
+                    <div class="dialog-input--title">
+                        <label for="title" class="title__label">Project Name</label><br>
+                        <input type="text" name="title" id="title" class="tile__input">
+                        <p class="title-error"></p>
+                    </div>
+                    <ul class="buttons">
+                        <li><a href="#" class="buttons--cancel" id="closeDialog">Close</a></li>
+                        <li><a href="#" class="buttons--submit" id="submitDialog">Submit</a></li>
+                    </ul>  
+                </form>
+            <dialog>            
+        </main>
+        <div class="signup-form">
+            <form action="#" class="form">
+                <div class="username">
+                    <label for="" class="username--label">Username</label>
+                    <input type="text" class="input" name="username">
+                    <p class="error"></p>
+                </div>
+                <div class="password">
+                    <label for="" class="password--label">Password</label>
+                    <input type="password" class="input" name="password">
+                    <p class="error"></p>
+                </div>
+                <div class="buttons">
+                    <div class="right__links">
+                        <a href="#" class="button--close">Close</a>
+                        <a href="#" class="button--register">Register</a>
+                    </div>                    
+                </div>
+            </form>
+        </div>
+       
+        <div class="notification--signup">
+            <div class="message">User account created</div>
+        </div>
+        
+    </div>
+    <script src="javascript/home.js"></script>
+</body>
+</html>

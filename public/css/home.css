@@ -1,0 +1,240 @@
+:root {
+  --background-color:rgb(151, 151, 151);
+  --todo-background-clr:rgb(56, 56, 56);
+  --dialog-bg-color:rgb(198, 198, 198);
+  --inner-width:92%;
+  --cancel-button:rgba(135, 33, 33, 0.874);
+  --white:rgb(231, 231, 231);
+  --black:rgb(29, 29, 29);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Afacad Flux", sans-serif;
+  font-size: 62.5%;
+  background-color: rgb(245, 245, 245);
+}
+
+.container {
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0 0.1rem 0.4rem rgb(209, 208, 208);
+  border-radius: 0.3rem;
+  max-width: 50rem;
+  margin: 6rem auto;
+  overflow: hidden;
+  min-height: 30rem;
+  padding-top: 0.1rem;
+  padding: 1.2rem 2.2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .logo {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgb(155, 155, 155);
+}
+.header .logo span {
+  color: rgb(88, 88, 88);
+}
+.header a {
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: rgb(60, 60, 187);
+  color: white;
+}
+
+.projects {
+  margin: 1.4rem auto;
+  padding-top: 0.1rem;
+}
+.projects .project__empty {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.project {
+  background-color: rgb(230, 230, 230);
+  padding: 1.1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0rem 0.2rem rgb(202, 202, 202);
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+.project .project__left-title {
+  font-size: 1.6rem;
+}
+.project .project__left__date {
+  font-size: 0.9rem;
+  color: rgb(185, 182, 182);
+  margin-top: -0.1rem;
+}
+.project .project__buttons {
+  list-style: none;
+}
+.project .project__buttons .button--remove {
+  color: white;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background-color: rgb(163, 54, 54);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.dialog {
+  width: 20rem;
+  background-color: rgb(241, 241, 241);
+  border-radius: 0.3rem;
+  box-shadow: 0rem 0rem 0.5rem rgb(204, 204, 204);
+  border: 1px solid rgb(214, 214, 214);
+  padding: 1rem;
+  border: none;
+  margin: 9rem auto;
+}
+.dialog .dialog__form {
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dialog .title__label {
+  font-size: 1.1rem;
+}
+.dialog .tile__input {
+  outline: none;
+  border: none;
+  background-color: rgb(229, 229, 229);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  border-radius: 0.2rem;
+}
+.dialog .title-error {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: rgb(163, 54, 54);
+}
+.dialog .buttons {
+  list-style: none;
+  text-align: end;
+}
+.dialog .buttons li {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.dialog .buttons li a {
+  text-decoration: none;
+  font-size: 1rem;
+}
+.dialog .buttons li:last-child {
+  margin: 0;
+}
+.dialog .buttons--cancel {
+  color: white;
+  background-color: rgb(163, 54, 54);
+  border: 1px solid rgb(163, 54, 54);
+  font-weight: 500;
+  padding: 0.2rem 0.7rem;
+}
+.dialog .buttons--submit {
+  color: black;
+  border: 1px solid grey;
+  color: black;
+  padding: 0.2rem 0.4rem;
+}
+
+.signup-form {
+  display: none;
+  background-color: rgb(241, 241, 241);
+  width: 20rem;
+  position: fixed;
+  left: 50%;
+  top: 19%;
+  padding: 1.2rem 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid rgb(214, 214, 214);
+  box-shadow: 0rem 0rem 0.5rem rgb(204, 204, 204);
+  transition: opacity 0.2s ease-in-out;
+  transform: translateX(-50%);
+}
+.signup-form .form {
+  display: flex;
+  flex-direction: column;
+}
+.signup-form .form .username, .signup-form .form .password {
+  margin-bottom: 1.7rem;
+  position: relative;
+}
+.signup-form .form label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+.signup-form .form input {
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: rgb(239, 239, 239);
+  border: 1px solid rgb(213, 213, 213);
+  outline: none;
+}
+.signup-form .form .error {
+  position: absolute;
+  color: rgb(163, 54, 54);
+  font-size: 1rem;
+  top: 3.9rem;
+}
+.signup-form .form .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.signup-form .form .buttons .right__links {
+  display: flex;
+}
+.signup-form .form .buttons .right__links a {
+  text-decoration: none;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: black;
+}
+.signup-form .form .buttons .right__links a:last-child {
+  margin: 0;
+  color: rgb(163, 54, 54);
+}
+
+.notification--signup {
+  background-color: rgb(213, 224, 213);
+  position: fixed;
+  top: 16%;
+  left: 50%;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.5s;
+}
+.notification--signup .message {
+  font-size: 1rem;
+  color: rgb(27, 112, 27);
+}
+
+.notification--signup.show {
+  opacity: 1;
+  visibility: visible;
+}

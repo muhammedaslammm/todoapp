@@ -1,0 +1,206 @@
+@use 'partials/global';
+@use './partials/variables';
+@use './partials/mixins';
+
+$logo:rgb(155, 155, 155);
+$logo2:rgb(88, 88, 88);
+$date:rgb(185, 182, 182);
+
+
+.container{
+    @include mixins.container-style;
+    padding:1.2rem 2.2rem; 
+}
+.header{
+    // margin:1rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo{
+        font-size: 1.4rem;
+        font-weight: 500;
+        color:$logo;
+        span{
+            color: $logo2
+        }
+    }
+    a{
+        @include mixins.button;
+        background-color: rgb(60, 60, 187);
+        color: white;
+    }
+}
+.projects{
+    margin: 1.4rem auto;
+    padding-top: .1rem;
+    
+
+    .project__empty{
+        font-size: 1.3rem;
+        text-align: center;
+        margin-top: 1rem;
+    }    
+}
+.project{
+    @include mixins.greyPlate;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .9rem;
+    .project__left-title{
+        font-size: 1.6rem;        
+    }
+    .project__left__date{
+        font-size:.9rem;
+        color:$date;
+        margin-top: -.1rem;
+    }
+    .project__buttons{
+        list-style: none;
+        .button--remove{
+            color:white;
+            font-size: .9rem;
+            text-decoration: none;
+            background-color: variables.$red;
+            padding:.3rem .5rem;
+            border-radius: .2rem;            
+        }
+    }
+}
+
+.dialog{
+    @include mixins.dialog;
+
+    .dialog__form{
+        @include mixins.dialog-form;
+    }
+    .title__label{
+        font-size: 1.1rem;
+    }
+    .tile__input{
+        @include mixins.dialog_input;
+    }
+    .title-error{
+        margin-top: .2rem;
+        font-size: .9rem;
+        color: variables.$red;
+    }
+    .buttons{
+        list-style: none;
+        text-align: end;
+        li{
+            display: inline-block;
+            margin-right: .5rem;
+
+            a{
+                text-decoration: none;
+                font-size: 1rem;
+            }
+            &:last-child{
+                margin: 0;
+            }
+        }
+        
+    }
+    .buttons--cancel{
+        @include mixins.buttons__cancel
+    }
+    .buttons--submit{
+        @include mixins.buttons__submit;
+    }
+}
+
+// sign up form
+
+.signup-form{
+    display: none;
+    background-color: rgb(241, 241, 241);
+    width:20rem;
+    position: fixed;
+    left:50%;
+    top: 19%;
+    padding: 1.2rem 1rem;
+    border-radius: .3rem;
+    border:1px solid rgb(214, 214, 214);
+    box-shadow: 0rem 0rem .5rem rgb(204, 204, 204);
+    
+    transition: opacity .2s ease-in-out;
+    transform: translateX(-50%);
+
+    .form{
+        display: flex;
+        flex-direction: column;
+
+        .username, .password{
+            margin-bottom: 1.7rem;
+            position: relative;
+        }
+
+        label{
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: .3rem;            
+        }
+        input{
+            border:none;
+            padding: .5rem;
+            width: 100%;
+            border-radius: .3rem;
+            background-color: rgb(239, 239, 239);
+            border:1px solid rgb(213, 213, 213);
+            outline: none
+        }
+        .error{
+            position: absolute;
+            color:variables.$red;
+            font-size: 1rem;
+            top:3.9rem
+        }   
+        
+        .buttons{
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+
+            .right__links{
+                display: flex;
+                a{
+                    text-decoration: none;
+                    margin-right: .5rem;
+                    font-size: 1rem;
+                    color: black;
+
+                    &:last-child{
+                        margin: 0;
+                        color:variables.$red
+                    }
+                }
+            }
+        }
+    } 
+}
+
+
+.notification--signup{
+    background-color: rgb(213, 224, 213);
+    position: fixed;
+    top:16%;
+    left:50%;
+    padding:.4rem;
+    border-radius: .3rem;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity .5s;
+
+    .message{
+        font-size: 1rem;
+        color:rgb(27, 112, 27);
+    }
+}
+
+.notification--signup.show{
+    opacity: 1;
+    visibility: visible;
+}

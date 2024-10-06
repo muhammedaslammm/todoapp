@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/config')%>
+    <link rel="stylesheet" href="/css/project.css">
+</head>
+<body>
+    <div class="project" data-id="<%=project._id%>">
+        <header class="project__header">
+            <div class="header__left">
+                <div class="project__name"><%=project.title%></div>
+                <div class="project__date">Created on <%=project_date%></div>
+            </div>
+            <div class="header__right">
+                <a href="#" class="button--gist">Generate & upload summary</a>
+                <a href="#" class="button--add">Add Todo</a>
+            </div>  
+        </header>
+        <main class="todos" data-projectid="<%=project._id%>">   
+            <%if(project.list_of_todos.length){%>
+                <p class="todos__count">Summary: <span class="count--completed"><%=completed%></span>/<span class="count--total"><%=todos_length%></span> todos completed</p>
+                <div class="pending__section main__section" >
+                    <div class="pending__section__head">Pendings</div>
+                    <%if(unchecked_todos.length){%>
+                        <%unchecked_todos.forEach(function(todo){%>
+                            <div class="todo__pending" data-id="<%=todo._id%>">
+                                <input type="checkbox" name="checkbox" class="pending__checkbox">
+                                <label class="pending__head head" ><%=todo.description%></label>
+                            </div>
+                        <%})%>
+                    <%}else{%>
+                        <p class="todo__pending__empty">All tasks completed</p>
+                    <%}%>
+                </div>
+                <div class="completed__section main__section">
+                    <div class="completed__section__head">Completed</div>
+                    <%if(checked_todos.length){%>
+                        <%checked_todos.forEach(function(todo){%>
+                            <div class="todo__completed" data-id="<%=todo._id%>">
+                                <input type="checkbox" name="checkbox" class="completed__checkbox" checked>
+                                <label class="completed__head head"><%=todo.description%></label>
+                            </div>
+                        <%})%>
+                    <%}else{%>
+                        <p class="todo__completed__empty">No task completed</p>
+                    <%}%>
+                </div>
+            <%}else{%>
+                <p class="todos__empty">No todos added to this project. <a href="#" class="button--add">Add Todo</a></p>
+            <%}%> 
+                                            
+                           
+            <dialog class="dialog" data-id="<%=project._id%>">
+                <form action="#" class="dialog__form">
+                    <div class="form__input">
+                        <label for="todo" class="form__label">Add a task:</label>
+                        <input type="text" id="todo_input" class="todo__input">
+                        <p class="input-error"></p>
+                    </div>
+                    <div class="form__button">
+                        <a href="#" class="button--close">Close</a>
+                        <a href="#" class="button--submit">Submit</a>
+                    </div>                    
+                </form>
+            </dialog>
+        </main>
+        <div class="todo__instruction">
+            *double click on todo to edit or delete todo
+        </div> 
+    </div>
+    <script src="/javascript/project.js"></script>
+</body>
+</html>

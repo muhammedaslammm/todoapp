@@ -1,0 +1,21 @@
+@use 'variables';
+
+:root{
+    --background-color:rgb(151, 151, 151); 
+    --todo-background-clr:rgb(56, 56, 56);
+    --dialog-bg-color:rgb(198, 198, 198);
+    --inner-width:92%;
+    --cancel-button:rgba(135, 33, 33, 0.874);
+    --white:rgb(231, 231, 231);
+    --black:rgb(29, 29, 29);
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: variables.$main-font;
+    font-size: 62.5%;
+    background-color: variables.$body-bg;
+}

@@ -1,0 +1,219 @@
+:root {
+  --background-color:rgb(151, 151, 151);
+  --todo-background-clr:rgb(56, 56, 56);
+  --dialog-bg-color:rgb(198, 198, 198);
+  --inner-width:92%;
+  --cancel-button:rgba(135, 33, 33, 0.874);
+  --white:rgb(231, 231, 231);
+  --black:rgb(29, 29, 29);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Afacad Flux", sans-serif;
+  font-size: 62.5%;
+  background-color: rgb(245, 245, 245);
+}
+
+.project {
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0 0.1rem 0.4rem rgb(209, 208, 208);
+  border-radius: 0.3rem;
+  max-width: 50rem;
+  margin: 6rem auto;
+  overflow: hidden;
+  min-height: 30rem;
+  padding-top: 0.1rem;
+  padding: 1.2rem 2.2rem;
+}
+
+.project__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.project__header .project__name {
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(42, 42, 42);
+}
+.project__header .project__name:focus {
+  outline: none;
+}
+.project__header .project__date {
+  color: rgb(117, 117, 117);
+  font-size: 1rem;
+  margin-top: -0.2rem;
+}
+.project__header .header__right {
+  display: flex;
+  gap: 0.5rem;
+}
+.project__header .header__right a {
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+}
+.project__header .header__right .button--gist {
+  border: 1px solid rgb(60, 60, 187);
+  color: rgb(60, 60, 187);
+}
+.project__header .header__right .button--gist:active {
+  background-color: rgb(60, 60, 187);
+  color: white;
+}
+.project__header .header__right .button--add {
+  background-color: rgb(60, 60, 187);
+  color: white;
+}
+
+.todos {
+  background-color: rgb(230, 230, 230);
+  padding: 1.1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0rem 0.2rem rgb(202, 202, 202);
+}
+
+.todos__count {
+  text-align: end;
+  font-size: 1rem;
+  color: rgb(191, 191, 191);
+}
+
+.todos__empty {
+  font-size: 1.2rem;
+}
+
+.pending__section {
+  margin-bottom: 1.8rem;
+}
+.pending__section .pending__section__head {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(44, 44, 44);
+  letter-spacing: 0.01rem;
+  margin-bottom: 0.5rem;
+}
+
+.completed__section {
+  margin-bottom: 1rem;
+}
+.completed__section .completed__section__head {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgb(44, 44, 44);
+  letter-spacing: 0.01rem;
+  margin-bottom: 0.5rem;
+}
+
+.todo__pending {
+  margin-bottom: 0.4rem;
+}
+.todo__pending .pending__head {
+  font-size: 1.2rem;
+  color: rgb(46, 46, 46);
+  margin-left: 0.5rem;
+}
+.todo__pending .head {
+  user-select: none;
+  outline: none;
+}
+
+.todo__completed {
+  margin-bottom: 0.4rem;
+}
+.todo__completed .completed__head {
+  font-size: 1.3rem;
+  color: rgb(47, 47, 47);
+  margin-left: 0.5rem;
+}
+.todo__completed .head {
+  user-select: none;
+  outline: none;
+}
+
+.todo__pending__empty {
+  color: rgb(150, 150, 150);
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+}
+
+.todo__completed__empty {
+  color: rgb(150, 150, 150);
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+}
+
+.todo__instruction {
+  display: none;
+  text-align: end;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgb(191, 191, 191);
+  margin-top: 0.4rem;
+}
+
+.dialog {
+  width: 20rem;
+  background-color: rgb(241, 241, 241);
+  border-radius: 0.3rem;
+  box-shadow: 0rem 0rem 0.5rem rgb(204, 204, 204);
+  border: 1px solid rgb(214, 214, 214);
+  padding: 1rem;
+  border: none;
+  margin: 9rem auto;
+}
+.dialog .dialog__form {
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dialog .form__label {
+  font-size: 1.1rem;
+}
+.dialog .todo__input {
+  outline: none;
+  border: none;
+  background-color: rgb(229, 229, 229);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  border-radius: 0.2rem;
+}
+.dialog .input-error {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: rgb(163, 54, 54);
+}
+.dialog .form__button {
+  text-align: end;
+}
+.dialog .form__button a {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.dialog .form__button .button--close {
+  color: white;
+  background-color: rgb(163, 54, 54);
+  border: 1px solid rgb(163, 54, 54);
+  font-weight: 500;
+  padding: 0.2rem 0.7rem;
+}
+.dialog .form__button .button--submit {
+  color: black;
+  border: 1px solid grey;
+  color: black;
+  padding: 0.2rem 0.4rem;
+}

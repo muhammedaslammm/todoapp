@@ -1,0 +1,77 @@
+@use 'variables';
+
+@mixin container-style{
+    background-color: variables.$container-bg-color;
+    box-shadow: 0 .1rem .4rem rgb(209, 208, 208);
+    border-radius: .3rem;
+    max-width: 50rem;
+    margin:6rem auto;
+    overflow: hidden;
+    min-height: 30rem;
+    padding-top:.1rem;
+}
+// dialog
+@mixin dialog{
+    width:20rem;
+    background-color: rgb(241, 241, 241);
+    border-radius: .3rem;
+    box-shadow: 0rem 0rem .5rem rgb(204, 204, 204);
+    border:1px solid rgb(214, 214, 214);
+    padding:1rem;
+    border:none;
+    margin: 9rem auto;
+}
+@mixin dialog-form{
+    min-height: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+@mixin dialog_input{
+    outline: none;
+    border:none;
+    background-color: rgb(229, 229, 229);
+    padding:.5rem;
+    margin-top: .5rem;
+    width: 100%;
+    border-radius: .2rem;
+}
+@mixin buttons__cancel{
+    color:white;
+    background-color: variables.$red;
+    border:1px solid variables.$red;
+    font-weight: 500;
+    padding: .2rem .7rem;
+}
+@mixin buttons__submit{
+    color: black;
+    border:1px solid grey;
+    color:black;
+    padding:.2rem .4rem;
+}
+
+@mixin section-head($font-size){
+    font-family: variables.$sub-font;
+    font-size: $font-size;
+    font-weight: 600;
+    color:rgb(44, 44, 44);
+    letter-spacing: .01rem;
+    margin-bottom: .5rem;        
+}
+
+// blue button
+@mixin button{
+    text-decoration: none;
+    font-size: 1rem;
+    padding:.25rem .5rem;
+    border-radius: .3rem;        
+}
+
+// grey plates
+@mixin greyPlate{
+    background-color: variables.$greyPlate;
+    padding: 1.1rem;
+    border-radius: .4rem;
+    box-shadow: 0 0rem .2rem rgb(202, 202, 202);
+}
+
