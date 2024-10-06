@@ -10,7 +10,7 @@ router.route('/')
 .post(authentication,homeController.createProject)
 
 router.route('/:id')
-.get(homeController.getProject)
+.get(authentication,homeController.getProject)
 .delete(authentication,homeController.deleteProject)
 .patch(authentication,homeController.editProject)
 

@@ -31,7 +31,6 @@ document.querySelector('.project').addEventListener('click',function(event){
         .then(function(data){
             let gistBlob = new Blob([data.gistContent],{type:'text/markdown'});
             let gisturl = URL.createObjectURL(gistBlob);
-            // im here
 
             let a = document.createElement('a');
             a.href = gisturl;
